@@ -114,17 +114,22 @@ $(document).ready(function() {
 });
 
 const indicator = state === "demo" ? "demo" : "project";
-const projects = document.querySelectorAll(`.${indicator}`);
+const projects = document.querySelectorAll("." + indicator);
 
-[...document.querySelectorAll(".sum-project")].forEach(element => {
-  element.innerHTML = projects.length;
-});
+// document.querySelectorAll(".sum-project").forEach(element => {
+//   element.innerHTML = projects.length;
+// });
+
+const all = document.querySelectorAll(".sum-project");
+for (let i = 0; i < all.length; i++) {
+  all[i].innerHTML = projects.length;
+}
 
 function moveDown(e) {
   console.log(indicator);
   let nextKey;
   const cName = e.currentTarget.id.indexOf("demo") !== -1 ? "demo" : "project";
-  const num = $(`.${cName}.active`).attr("id");
+  const num = $("." + cName + ".active").attr("id");
   $.each(projects, function(key, value) {
     if (num == value.id) {
       nextKey = key + 1;
@@ -155,7 +160,7 @@ function moveDown(e) {
 function moveUp(e) {
   let nextKey;
   const cName = e.currentTarget.id.indexOf("demo") !== -1 ? "demo" : "project";
-  const num = $(`.${cName}.active`).attr("id");
+  const num = $("." + cName + ".active").attr("id");
   $.each(projects, function(key, value) {
     if (num == value.id) {
       nextKey = key - 1;
