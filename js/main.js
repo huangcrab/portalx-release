@@ -113,32 +113,39 @@ $(document).ready(function() {
   });
 });
 
-const indicator = state === "demo" ? "demo" : "project";
-const projects = document.querySelectorAll("." + indicator);
+const projects = document.querySelectorAll(".project");
+const demos = document.querySelectorAll(".demo");
+let all = document.querySelectorAll(".sum-project");
+for (let i = 0; i < all.length; i++) {
+  all[i].innerHTML = projects.length;
+}
+all = document.querySelectorAll(".sum-demo");
+for (let i = 0; i < all.length; i++) {
+  all[i].innerHTML = demos.length;
+}
+
+function getCurrent() {
+  return state === "demo" ? demos : projects;
+}
 
 // document.querySelectorAll(".sum-project").forEach(element => {
 //   element.innerHTML = projects.length;
 // });
 
-const all = document.querySelectorAll(".sum-project");
-for (let i = 0; i < all.length; i++) {
-  all[i].innerHTML = projects.length;
-}
-
 function moveDown(e) {
-  console.log(indicator);
+  const currentItems = getCurrent();
   let nextKey;
   const cName = e.currentTarget.id.indexOf("demo") !== -1 ? "demo" : "project";
   const num = $("." + cName + ".active").attr("id");
-  $.each(projects, function(key, value) {
+  $.each(currentItems, function(key, value) {
     if (num == value.id) {
       nextKey = key + 1;
-      if (nextKey >= projects.length) {
+      if (nextKey >= currentItems.length) {
         nextKey = 0;
       }
     }
   });
-  const next = $("#" + projects[nextKey].id);
+  const next = $("#" + currentItems[nextKey].id);
   const current = $("#" + num);
   $("#next").fadeOut(10);
   $("#prev").fadeOut(10);
@@ -158,18 +165,19 @@ function moveDown(e) {
 }
 
 function moveUp(e) {
+  const currentItems = getCurrent();
   let nextKey;
   const cName = e.currentTarget.id.indexOf("demo") !== -1 ? "demo" : "project";
   const num = $("." + cName + ".active").attr("id");
-  $.each(projects, function(key, value) {
+  $.each(currentItems, function(key, value) {
     if (num == value.id) {
       nextKey = key - 1;
       if (nextKey < 0) {
-        nextKey = projects.length - 1;
+        nextKey = currentItems.length - 1;
       }
     }
   });
-  const next = $("#" + projects[nextKey].id);
+  const next = $("#" + currentItems[nextKey].id);
   const current = $("#" + num);
   $("#next").fadeOut(10);
   $("#prev").fadeOut(10);

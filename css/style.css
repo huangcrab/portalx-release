@@ -2,35 +2,46 @@
   box-sizing: border-box;
 }
 .btn:hover {
-  cursor: cell !important;
+  cursor: cell;
 }
-.display-item a {
+.project a {
   color: #df541d;
 }
-.display-item a:visited {
+.project a:visited {
   color: #df541d;
 }
-.display-item span {
+span {
   color: #df541d;
 }
-
-#wrapper { width: 500px; height: 300px; padding-bottom: 0; overflow: hidden; }
-#scaled-frame { width: 1000px; height: 800px; border: 0px;top:25%;left:25%}
-#scaled-frame {
-    zoom: 0.5;
-    -moz-transform: scale(0.5);
-    -moz-transform-origin: 0 0;
-    -o-transform: scale(0.5);
-    -o-transform-origin: 0 0;
-    -webkit-transform: scale(0.5);
-    -webkit-transform-origin: 0 0;
+.wrapper {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  padding-bottom: 0;
+  overflow: hidden;
+  margin: 0 auto;
+  margin-bottom: 20px;
 }
-
-@media screen and (-webkit-min-device-pixel-ratio:0) {
- #scaled-frame  { zoom: 1;  }
-
-
-
+.scaled-frame {
+  width: 1000px;
+  height: 800px;
+  border: 0px;
+  margin: 0 auto;
+}
+.scaled-frame {
+  zoom: 0.2;
+  -moz-transform: scale(0.2);
+  -moz-transform-origin: 0 0;
+  -o-transform: scale(0.2);
+  -o-transform-origin: 0 0;
+  -webkit-transform: scale(0.2);
+  -webkit-transform-origin: 0 0;
+}
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  .scaled-frame {
+    zoom: 1;
+  }
+}
 
 body {
   margin: 0;
@@ -94,6 +105,28 @@ body {
   min-height: 100%;
 }
 
+.icon-group {
+  position: relative;
+  background: white;
+  opacity: 0.8;
+  display: inline;
+  padding: 20px 10px 0px 10px;
+  border-radius: 15px;
+  margin: 0 auto;
+}
+a.frame-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 99;
+}
+a.frame-overlay:hover {
+  background: #0c3b94;
+  opacity: 0.5;
+  cursor: cell;
+}
 .header-overlay {
   /* height: 100vh;
   width: 100vw;
@@ -153,7 +186,8 @@ body {
 /* ---------------------- Gradient ----------------------- */
 .header-content,
 .header-content-about,
-.display-container {
+.projects,
+.demos {
   z-index: 3;
 }
 .header-content h1 {
@@ -176,13 +210,13 @@ body {
   color: #e42626;
   text-transform: uppercase;
 }
-.display-container {
+.projects {
   position: relative;
   height: 50%;
   border-radius: 20px;
   padding: 0;
 }
-.display-container p {
+.projects p {
   font-size: 1.2rem;
   height: 12rem;
   margin: 0;
@@ -192,10 +226,13 @@ body {
   margin: 0;
   bottom: 0rem;
 }
-.display-item h1 {
+.project h1 {
   margin: 0;
 }
-.display-item {
+.demo {
+  display: none;
+}
+.project {
   display: none;
   margin: 0;
   padding: 0;
@@ -219,6 +256,9 @@ body {
 #demos-about {
   background: #e42626;
 }
+.demos {
+  margin: 0 auto;
+}
 @media (max-width: 960px) {
   .container {
     padding-right: 3rem;
@@ -231,14 +271,14 @@ body {
     display: block;
     padding-bottom: 2rem;
   }
-  .control-btn {
+  .project-btn {
     bottom: -6rem;
   }
 }
 @media (max-width: 525px) {
   .header-content p,
   .header-content-about p,
-  .display-item p {
+  .project p {
     height: 12rem;
     font-size: 0.8rem;
     display: block;
@@ -256,19 +296,19 @@ body {
   }
 }
 @media (max-width: 425px) {
-  .display-item h3 {
+  .project h3 {
     font-size: 1rem;
   }
   .header-content h1,
   .header-content-about h1 {
     font-size: 2rem;
   }
-  .display-item h1 {
+  .project h1 {
     font-size: 1.5rem;
   }
   .header-content p,
   .header-content-about p,
-  .display-item p {
+  .project p {
     height: 8rem;
     font-size: 0.8rem;
     display: block;
@@ -285,7 +325,7 @@ body {
     position: relative;
     top: -100px;
   }
-  .display-container {
+  .projects {
     position: relative;
     top: -100px;
   }
@@ -303,6 +343,6 @@ body {
 }
 @media (max-width: 400px) {
   .btn {
-    padding: 0;
+    padding: 0.5;
   }
 }
