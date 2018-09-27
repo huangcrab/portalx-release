@@ -99,17 +99,18 @@ $(document).ready(function() {
     $(".header-content").show("slide", { direction: dir }, 1500);
   });
 
-  $(".control-next").click(function(e) {
-    moveDown(e);
+  $(".control-next").click(function() {
+    moveDown();
   });
-  jQuery(window).on("swipeleft", function(e) {
-    moveUp(e);
+  jQuery(window).on("swiperight", function() {
+    moveUp();
   });
-  $(".control-prev").click(function(e) {
-    moveUp(e);
+
+  $(".control-prev").click(function() {
+    moveUp();
   });
-  jQuery(window).on("swiperight", function(e) {
-    moveDown(e);
+  jQuery(window).on("swipeleft", function() {
+    moveDown();
   });
 });
 
@@ -125,27 +126,30 @@ for (let i = 0; i < all.length; i++) {
 }
 
 function getCurrent() {
-  return state === "demo" ? demos : projects;
+  return {
+    state: state === "demo" ? "demo" : "project",
+    data: state === "demo" ? demos : projects
+  };
 }
 
 // document.querySelectorAll(".sum-project").forEach(element => {
 //   element.innerHTML = projects.length;
 // });
 
-function moveDown(e) {
+function moveDown() {
   const currentItems = getCurrent();
   let nextKey;
-  const cName = e.currentTarget.id.indexOf("demo") !== -1 ? "demo" : "project";
+  const cName = currentItems.state.indexOf("demo") !== -1 ? "demo" : "project";
   const num = $("." + cName + ".active").attr("id");
-  $.each(currentItems, function(key, value) {
+  $.each(currentItems.data, function(key, value) {
     if (num == value.id) {
       nextKey = key + 1;
-      if (nextKey >= currentItems.length) {
+      if (nextKey >= currentItems.data.length) {
         nextKey = 0;
       }
     }
   });
-  const next = $("#" + currentItems[nextKey].id);
+  const next = $("#" + currentItems.data[nextKey].id);
   const current = $("#" + num);
   $("#next").fadeOut(10);
   $("#prev").fadeOut(10);
@@ -164,20 +168,20 @@ function moveDown(e) {
   $("#prev").fadeIn();
 }
 
-function moveUp(e) {
+function moveUp() {
   const currentItems = getCurrent();
   let nextKey;
-  const cName = e.currentTarget.id.indexOf("demo") !== -1 ? "demo" : "project";
+  const cName = currentItems.state.indexOf("demo") !== -1 ? "demo" : "project";
   const num = $("." + cName + ".active").attr("id");
-  $.each(currentItems, function(key, value) {
+  $.each(currentItems.data, function(key, value) {
     if (num == value.id) {
       nextKey = key - 1;
       if (nextKey < 0) {
-        nextKey = currentItems.length - 1;
+        nextKey = currentItems.data.length - 1;
       }
     }
   });
-  const next = $("#" + currentItems[nextKey].id);
+  const next = $("#" + currentItems.data[nextKey].id);
   const current = $("#" + num);
   $("#next").fadeOut(10);
   $("#prev").fadeOut(10);
