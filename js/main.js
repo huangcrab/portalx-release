@@ -32,6 +32,7 @@ $(document).ready(function() {
   });
 
   $("#projects,#projects-about,#demos,#demos-about").click(function() {
+    loadIframes();
     const demo =
       $(this)
         .attr("id")
@@ -214,4 +215,22 @@ function assignActive(state) {
   // } else {
   //   document.querySelector(".active").classList.remove("active");
   // }
+}
+
+function loadIframes() {
+  document
+    .getElementById("demo-one")
+    .querySelector(".wrapper")
+    .querySelector(".scaled-frame")
+    .setAttribute("src", "https://warm-island-73436.herokuapp.com/");
+  document
+    .getElementById("demo-two")
+    .querySelector(".wrapper")
+    .querySelector(".scaled-frame")
+    .setAttribute("src", "https://limitless-beach-24902.herokuapp.com/");
+  document
+    .getElementById("demo-three")
+    .querySelector(".wrapper")
+    .querySelector(".scaled-frame")
+    .setAttribute("src", "https://clientpanel-3bd53.firebaseapp.com/");
 }
