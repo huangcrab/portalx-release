@@ -235,9 +235,9 @@ function loadIframes() {
     demo1.setAttribute("src", "https://warm-island-73436.herokuapp.com/");
   }
   if (demo2.getAttribute("src") === "") {
-    demo1.setAttribute("src", "https://limitless-beach-24902.herokuapp.com/");
+    demo2.setAttribute("src", "https://limitless-beach-24902.herokuapp.com/");
   }
   if (demo3.getAttribute("src") === "") {
-    demo1.setAttribute("src", "https://clientpanel-3bd53.firebaseapp.com/");
+    demo3.setAttribute("src", "https://clientpanel-3bd53.firebaseapp.com/");
   }
 }
