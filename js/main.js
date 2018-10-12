@@ -218,19 +218,26 @@ function assignActive(state) {
 }
 
 function loadIframes() {
-  document
+  const demo1 = document
     .getElementById("demo-one")
     .querySelector(".wrapper")
-    .querySelector(".scaled-frame")
-    .setAttribute("src", "https://warm-island-73436.herokuapp.com/");
-  document
+    .querySelector(".scaled-frame");
+  const demo2 = document
     .getElementById("demo-two")
     .querySelector(".wrapper")
-    .querySelector(".scaled-frame")
-    .setAttribute("src", "https://limitless-beach-24902.herokuapp.com/");
-  document
+    .querySelector(".scaled-frame");
+  const demo3 = document
     .getElementById("demo-three")
     .querySelector(".wrapper")
-    .querySelector(".scaled-frame")
-    .setAttribute("src", "https://clientpanel-3bd53.firebaseapp.com/");
+    .querySelector(".scaled-frame");
+
+  if (demo1.getAttribute("src") === "") {
+    demo1.setAttribute("src", "https://warm-island-73436.herokuapp.com/");
+  }
+  if (demo2.getAttribute("src") === "") {
+    demo1.setAttribute("src", "https://limitless-beach-24902.herokuapp.com/");
+  }
+  if (demo3.getAttribute("src") === "") {
+    demo1.setAttribute("src", "https://clientpanel-3bd53.firebaseapp.com/");
+  }
 }
